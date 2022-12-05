@@ -1,3 +1,3 @@
 # Kafka Tutorial
 
-1. Installation
+1. Core concepts
