@@ -141,5 +141,8 @@
 
 ### Start Consuming in Group
 ```bash
+  kafka-console-producer.sh --bootstrap-server localhost:9092 --topic first_topic
+```
+```bash
   kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic first_topic --group my-first-consumer-group
 ```
