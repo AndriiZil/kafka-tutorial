@@ -63,3 +63,17 @@
 - `compression.type=none` all buthches are decompressed by the broker
 - `compression.type=lz4`
 - If you enable broker-side compression, it will consume extra CPU cycles
+
+### Batch mechanism on Producer
+- `linger.ms` (default 0) how to long to wait untill we send a batch. Adding a small
+- number for example 5ms helps add more messages in the batch at the expense of latency
+- `batch.size` (default 16Kb 16*1024=16384) if a batch is filled before `linger.ms` increase the batch size
+- Increasing the batch size to 32Kb or 64Kb (32*1024 or 64*1024) can help increasing the compression, throughput, and efficiency of requests
+- Any message that is bigger than the batch size will not be batched
+- A batch is allocated per partition, don't set it to a number that's too high
+- Also introduce some producer-level compression for more efficiency in sends
+- A good example is:
+  - Message compression `snappy` when using text based or JSON documents
+  - `snappy` has a goof balance of CPU / compression ratio
+  - Increase `batch.size` to 32Kb
+  - Small delay `linger.ms` (20ms)
