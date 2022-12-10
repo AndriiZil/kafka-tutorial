@@ -10,10 +10,15 @@
 
 - Total number of partitions in cluster:
     - Kafka with Zookeeper max 200.000 partitions (Zookeeper scaling limit)
-    - Still recomended a maximum 4.000 partitions per broker (soft limit)
+    - Still recommended a maximum 4.000 partitions per broker (soft limit)
     - Kafka with Kraft potentially millions of partitions
     - If you need more partitions in your cluster, add brokers instead
     - If you need more than 200.000 partitions in your cluster create more Kafka clusters
     - You don't need a topic with 1000 partitions to achieve high throughput
 
 ### Topic naming convention
+
+<message type>.<dataset name>.<data name>.<data format>
+ - message type: loggong, queuing, push, user, streaming
+ - dataset name is analous to a database name in traditional RDBMS systems
+ - data format for example .avro, .json, .text, .protobuf, .csv, .log
