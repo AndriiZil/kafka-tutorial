@@ -107,3 +107,23 @@
   Patric,salary: 30000
   Stephane,salary: 0
 ```
+
+### Unclean Leader Electrion
+- `unclean.leader.election.enable=false` (by default)
+- Use cases:
+  - Metric collection, log collection, and etc where data loss is somehow acceptable
+- If you setup `unclean.leader.election.enable=true` you improove availability, but you will lose data because
+- other messages on ISR will be discarded when they come back online and replicate data from the new leader.
+
+### Large messages
+- By default in kafka 1MB per message in the topic
+- We can modify for it broker, producer nad consumer
+- Topic-wise Kafka-side to 10MB
+  - on broker side `message.max.bytes`
+  - on topic side modify `max.message.bytes`
+- Broker wise:
+  - `replica.fetch.max.bytes=10485880` (in server.properties)
+- Consumer side:
+  - `replica.fetch.fetch.bytes=10485880`
+- Producer side:
+  - `max.request.size=10485880`
